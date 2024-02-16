@@ -1,0 +1,6 @@
+torch==1.9.0
+numpy==1.21.2
+mlagents-envs==0.29.0
+unityagents==0.4.0
+pyyaml==5.4.1
+gdown==4.2.0
