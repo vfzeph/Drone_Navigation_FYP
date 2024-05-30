@@ -1,0 +1,94 @@
+{
+  "learning_rate": 0.0001,
+  "gamma": 0.99,
+  "tau": 0.95,
+  "batch_size": 64,
+  "num_timestamps": 2000000,
+  "ppo": {
+    "learning_rate": 0.0003,  
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "clip_range_vf": null,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "use_sde": true,
+    "sde_sample_freq": 4,
+    "target_kl": null,
+    "tensorboard_log": "./ppo_airsim_tensorboard/",
+    "create_eval_env": false,
+    "policy_kwargs": {},
+    "verbose": 1,
+    "seed": null,
+    "device": "auto"
+  },
+  "policy_network": {
+    "input_size": 10,
+    "hidden_layers": [256, 256],
+    "output_size": 4
+  },
+  "critic_network": {
+    "input_size": 10,
+    "hidden_layers": [256, 256],
+    "output_size": 1
+  },
+  "environment": {
+    "env_name": "Africa_001",
+    "reward_threshold": 250,
+    "max_env_steps": 1000,
+    "state_dim": 10,
+    "action_dim": 3,
+    "reward_scale": 20,
+    "proximity_threshold": 5.0,
+    "collision_penalty": 25,
+    "height_target": -10,
+    "height_tolerance": 1.0,
+    "height_penalty": 1,
+    "movement_penalty": 0.5,
+    "smoothness_penalty": 0.5,
+    "duration": 0.1,
+    "exploration_area": {
+      "x_min": -1000,
+      "x_max": 1000,
+      "y_min": -1000,
+      "y_max": 1000,
+      "z_min": -100,
+      "z_max": 100
+    }
+  },
+  "exploration": {
+    "strategy": "epsilon_decay",
+    "initial_epsilon": 1.0,
+    "min_epsilon": 0.05,  
+    "epsilon_decay_rate": 0.995  
+  },
+  "model_checkpointing": {
+    "checkpoint_interval": 10,  
+    "save_best_only": true,
+    "checkpoint_dir": "models/checkpoints"
+  },
+  "logging": {
+    "log_interval": 10,
+    "log_dir": "logs/",
+    "tensorboard": true,
+    "tensorboard_log_dir": "tensorboard_logs",
+    "model_save_path": "models/saved_models"
+  },
+  "advanced_training_techniques": {
+    "gradient_clipping": 0.5,
+    "use_gae": true,
+    "gae_lambda": 0.95,
+    "normalize_advantages": true
+  },
+  "early_stopping": {
+    "patience": 5
+  },
+  "reward_adjustments": {
+    "collision_penalty": 50,  
+    "reward_threshold": 250
+  }
+}
